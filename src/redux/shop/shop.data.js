@@ -264,11 +264,11 @@ const SHOP_DATA = [
         id: 39,
         name: 'Surgical Face Mask 50pcs',
         imageUrl: 'https://firebasestorage.googleapis.com/v0/b/shoolix.appspot.com/o/padma-shop%2Fcovid-essentials%2Fsurgical-mask.jpg?alt=media&token=101cc284-336c-44c4-83d0-af644dcfe169',
-        price: 24.99
+        price: 19.99
       },
       {
         id: 40,
-        name: 'Antibacterial Wipes 3pcs',
+        name: 'Antibacterial Wipes 3 packs',
         imageUrl: 'https://firebasestorage.googleapis.com/v0/b/shoolix.appspot.com/o/padma-shop%2Fcovid-essentials%2Fantibacterial-wipes.jpg?alt=media&token=4e103b59-5ab6-404a-9498-7e362ae927e9',
         price: 7.49
       },
