@@ -20,7 +20,8 @@ export const createUserProfileDoc = async (userAuth, additionalData) => {
 
   const snapShot = await userRef.get();
 
-  if (!snapShot.exists) { // if no user in db
+  if (!snapShot.exists) {
+    // if no user in db
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -39,19 +40,42 @@ export const createUserProfileDoc = async (userAuth, additionalData) => {
   return userRef;
 };
 
-export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
   const collectionRef = firestore.collection(collectionKey);
 
   const batch = firestore.batch(); // used for multiple writes as a single operation
   objectsToAdd.forEach((obj) => {
-    const newDocRef = collectionRef.doc() // firebase creates a ref with an auto-generated unique id
+    const newDocRef = collectionRef.doc(); // firebase creates a ref with an auto-generated unique id
     batch.set(newDocRef, obj);
   });
 
-  return await batch.commit()
+  return await batch.commit();
 };
 
 firebase.initializeApp(config);
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map((doc) => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.split(' ').join('-').toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[
+      collection.title.split(' ').join('-').toLowerCase()
+    ] = collection;
+    return accumulator;
+  }, {});
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
