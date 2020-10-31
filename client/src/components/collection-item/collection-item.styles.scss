@@ -20,6 +20,13 @@
     position: absolute;
     top: 255px;
     display: none;
+
+    @media screen and (max-width: 800px) {
+      display: block;
+      top: 140px;
+      min-width: unset;
+      padding: 0 10px;
+    }
   }
 
   &:hover {
@@ -47,6 +54,29 @@
 
     .price {
       width: 14%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+    height: 250px;
+
+    .image {
+      height: 80%
+    }
+
+    .collection-footer {
+      height: 20%;
+    }
+
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+  
+      .custom-button {
+        opacity: unset;
+      }
     }
   }
 }
