@@ -12,4 +12,5 @@ const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
   </div>
 );
 
-export default CartItem;
+export default React.memo(CartItem); 
+// only rerender if the item changes, e.g. increased quantity, instead of every time new item added to the array of cart items
