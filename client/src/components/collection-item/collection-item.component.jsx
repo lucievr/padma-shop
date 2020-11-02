@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import CustomButton from '../custom-button/custom-button.component';
 import { addItem } from '../../redux/cart/cart.actions';
+import { ReactComponent as HeartOutlined } from '../../assets/heart-outlined.svg';
 
 import './collection-item.styles.scss';
 
@@ -12,6 +13,10 @@ const CollectionItem = ({ item, addItem }) => {
 
   return (
     <div className='collection-item'>
+      <HeartOutlined className='heart-outlined' />
+      <div className='collection-header'>
+        <span className='name'>{name}</span>
+      </div>
       <div
         className='image'
         style={{
@@ -19,7 +24,7 @@ const CollectionItem = ({ item, addItem }) => {
         }}
       />
       <div className='collection-footer'>
-        <span className='name'>{name}</span>
+        <span className='detail'>View detail</span>
         <span className='price'>€ {price.toFixed(2)}</span>
       </div>
       <CustomButton onClick={() => addItem(item)} inverted>

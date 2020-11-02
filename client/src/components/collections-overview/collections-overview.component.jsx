@@ -10,9 +10,19 @@ import './collections-overview.styles.scss';
 
 const CollectionsOverview = ({ collections }) => (
   <div className='collections-overview'>
-    {collections.map(({ id, ...otherCollectionProps }) => (
-      <CollectionPreview key={id} {...otherCollectionProps} />
-    ))}
+    {collections
+      .sort((a, b) => {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (a.title > b.title) {
+          return 1;
+        }
+        return 0;
+      })
+      .map(({ id, ...otherCollectionProps }) => (
+        <CollectionPreview key={id} {...otherCollectionProps} />
+      ))}
   </div>
 );
 
