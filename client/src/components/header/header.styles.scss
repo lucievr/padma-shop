@@ -1,41 +1,44 @@
-.header {
-  height: 70px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-
-  @media screen and (max-width: 800px) {
-    height: 60px;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  .logo-container {
-    height: 100%;
-    width: 70px;
-    padding-top: 10px;
-
-    @media screen and (max-width: 800px) {
-      width: 50px;
-      padding: 0;
+header.app-bar {
+  color: black;
+  background-color: white;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  box-shadow: none;
+  
+  .toolbar {
+    justify-content: space-between;
+    @media (min-width: 600px) {
+      min-height: 60px;
     }
-  }
-
-  .options {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    @media screen and (max-width: 800px) {
-      width: 80%;
+    @media (min-width: 450px) {
+      min-height: 54px;
+    }
+    @media (max-width: 450px) {
+      min-height: 50px;
     }
 
-    .option {
-      padding: 10px 15px;
-      cursor: pointer;
+    .logo-container {
+      svg {
+        width: 36px;
+        height: 36px;
+        @media (max-width: 450px) {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    .options {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .option {
+        margin: 0 20px;
+      }
+    }
+
+    .cart-icon {
     }
   }
 }

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 
 import Spinner from '../../components/spinner/spinner.component';
+import ScrollToTop from '../../components/scroll-to-top/scroll-to-top.component';
 
 const CollectionsOverviewContainer = lazy(() =>
   import('../../components/collections-overview/collections-overview.container')
@@ -31,6 +32,7 @@ const ShopPage = ({ match, fetchCollectionsStart }) => {
           component={CollectionPageContainer}
         />
       </Suspense>
+      <ScrollToTop />
     </div>
   );
 };

@@ -6,7 +6,7 @@
   line-height: 50px;
   padding: 0 35px;
   font-size: 15px;
-  background-color: #555;
+  background-color: #666;
   color: white;
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
@@ -32,13 +32,14 @@
     }
   }
 
+  // TODO delete?
   &.inverted {
     background-color: white;
     color: black;
     border: 1px solid black;
 
     &:hover {
-      background-color: #333;
+      background-color: #666;
       color: white;
       border: none;
     }

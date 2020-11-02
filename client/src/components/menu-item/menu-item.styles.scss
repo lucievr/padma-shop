@@ -60,12 +60,21 @@
     position: absolute;
 
     .title {
-      font-weight: bold;
       margin: 0 6px 0;
-      font-size: 22px;
-      color: #222;
+      color: black;
       text-align: center;
       line-height: 1.2;
+      font-size: 1.1rem;
+
+      @media screen and (min-width: 450px) {
+        font-size: 1.2rem;
+      }
+      @media screen and (min-width: 600px) {
+        font-size: 1.3rem;
+      }
+      @media screen and (min-width: 850px) {
+        font-size: 1.4rem;
+      }
     }
 
     .subtitle {

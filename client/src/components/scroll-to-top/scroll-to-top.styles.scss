@@ -1,0 +1,12 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+
+  button.MuiFab-root {
+    background-color: #698EFC;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

@@ -25,7 +25,7 @@ const App = ({ checkUserSession, currentUser }) => {
   }, [checkUserSession]);
 
   return (
-    <div>
+    <>
       <Header />
       <Switch>
         <ErrorBoundary>
@@ -44,7 +44,10 @@ const App = ({ checkUserSession, currentUser }) => {
           </Suspense>
         </ErrorBoundary>
       </Switch>
-    </div>
+      <footer className='footer'>
+        <span>© {new Date().getFullYear()} Padma Co.</span>
+      </footer>
+    </>
   );
 };
 
