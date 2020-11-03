@@ -50,3 +50,13 @@ export const signUpFailure = (error) => ({
   type: UserActionTypes.SIGNUP_FAILURE,
   payload: error
 });
+
+export const addToFavourites = (itemId) => ({
+  type: UserActionTypes.ADD_TO_FAVOURITES,
+  payload: itemId,
+});
+
+export const removeFromFavourites = (itemId) => ({
+  type: UserActionTypes.REMOVE_FROM_FAVOURITES,
+  payload: itemId,
+});

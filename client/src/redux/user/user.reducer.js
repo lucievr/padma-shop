@@ -1,4 +1,5 @@
 import UserActionTypes from './user.types';
+import { addItemToFavourites, removeItemFromFavourites } from './user.utils';
 
 const INITIAL_STATE = {
   currentUser: null,
@@ -26,6 +27,20 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         error: action.payload,
       };
+    case UserActionTypes.ADD_TO_FAVOURITES:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser, favourites: addItemToFavourites(state.currentUser, action.payload),
+        }
+      };
+      case UserActionTypes.REMOVE_FROM_FAVOURITES:
+        return {
+          ...state,
+          currentUser: {
+            ...state.currentUser, favourites: removeItemFromFavourites(state.currentUser, action.payload),
+          }
+        };
     default:
       return state;
   }

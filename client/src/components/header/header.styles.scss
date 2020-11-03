@@ -35,6 +35,9 @@ header.app-bar {
 
       .option {
         margin: 0 20px;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 

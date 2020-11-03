@@ -29,4 +29,4 @@ export const selectIsCollectionFetching = createSelector(
 export const selectIsCollectionsLoaded = createSelector(
   [selectShop],
   (shop) => !!shop.collections // converts any truthy or falsy value to a boolean, e.g. !!null => false
-)
+);

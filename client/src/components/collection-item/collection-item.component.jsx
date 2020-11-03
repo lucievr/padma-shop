@@ -1,16 +1,32 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import CustomButton from '../custom-button/custom-button.component';
 import { addItem } from '../../redux/cart/cart.actions';
+import { addToFavourites, removeFromFavourites } from '../../redux/user/user.actions';
+import { selectCurrentUser, selectUserFavourites } from '../../redux/user/user.selectors.js';
 import { ReactComponent as HeartOutlined } from '../../assets/heart-outlined.svg';
 import { ReactComponent as HeartFilled } from '../../assets/heart-filled.svg';
 
 import './collection-item.styles.scss';
 
-const CollectionItem = ({ item, addItem }) => {
+const CollectionItem = ({ item, addItem, currentUser, userFavourites, addToFavourites, removeFromFavourites }) => {
   const { name, price, imageUrl } = item;
+
+  const handleAddToFavourites = () => {
+    if (currentUser) {
+      addToFavourites(item.id);
+    } else {
+      alert('You need to be signed in to add items to favourites')
+    }
+  };
+
+  const handleRemoveFromFavourites = () => {
+    if (!currentUser) return;
+    removeFromFavourites(item.id);
+  };
 
   return (
     <div className='collection-item'>
@@ -24,16 +40,29 @@ const CollectionItem = ({ item, addItem }) => {
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      { name === 'Relax' ? <HeartFilled className='heart-filled' /> : <HeartOutlined className='heart-outlined' />}  
-      <CustomButton onClick={() => addItem(item)}>
-        Add to cart
-      </CustomButton>
+      {currentUser && userFavourites && userFavourites.includes(item.id) ? (
+        <Tooltip title='Remove from favourites' placement='top'>
+          <HeartFilled className='heart-filled' onClick={handleRemoveFromFavourites} />
+        </Tooltip>
+      ) : (
+        <Tooltip title='Add to favourites' placement='top'>
+          <HeartOutlined className='heart-outlined' onClick={handleAddToFavourites} />
+        </Tooltip>
+      )}
+      <CustomButton onClick={() => addItem(item)}>Add to cart</CustomButton>
     </div>
   );
 };
 
-const matchDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  userFavourites: selectUserFavourites,
 });
 
-export default connect(null, matchDispatchToProps)(CollectionItem);
+const matchDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+  addToFavourites: (itemId) => dispatch(addToFavourites(itemId)),
+  removeFromFavourites: (itemId) => dispatch(removeFromFavourites(itemId)),
+});
+
+export default connect(mapStateToProps, matchDispatchToProps)(CollectionItem);

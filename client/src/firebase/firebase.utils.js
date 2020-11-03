@@ -40,6 +40,18 @@ export const createUserProfileDoc = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const updateUserProfileDoc = async (userId, fieldName, fieldValue ) => {
+  const userRef = firestore.doc(`users/${userId}`);
+
+  try {
+    await userRef.update({
+      [fieldName]: fieldValue
+    });
+  } catch (error) {
+    console.log('error updating user', error.message);
+  }
+};
+
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
