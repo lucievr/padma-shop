@@ -3,7 +3,9 @@ import ShopActionTypes from './shop.types';
 const INITIAL_STATE = {
   collections: null,
   isFetching: false,
-  errorMessage: undefined
+  errorMessage: undefined,
+  isModalOpen: false,
+  modalItem: null,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -23,7 +25,19 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        errorMessage: action.payload
+        errorMessage: action.payload,
+      };
+    case ShopActionTypes.OPEN_ITEM_MODAL:
+      return {
+        ...state,
+        isModalOpen: true,
+        modalItem: action.payload,
+      };
+    case ShopActionTypes.CLOSE_ITEM_MODAL:
+      return {
+        ...state,
+        isModalOpen: false,
+        modalItem: null,
       };
     default:
       return state;

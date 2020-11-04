@@ -13,3 +13,12 @@ export const fetchCollectionsFailure = (errorMessage) => ({
   type: ShopActionTypes.FETCH_COLLECTIONS_FAILURE,
   payload: errorMessage,
 });
+
+export const openItemModal = (item) => ({
+  type: ShopActionTypes.OPEN_ITEM_MODAL,
+  payload: item,
+});
+
+export const closeItemModal = () => ({
+  type: ShopActionTypes.CLOSE_ITEM_MODAL,
+});

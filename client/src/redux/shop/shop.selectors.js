@@ -15,9 +15,8 @@ export const selectCollectionsForPreview = createSelector(
 );
 
 export const selectCollection = memoize((collectionUrlParam) =>
-  createSelector(
-    [selectShopCollections],
-    (collections) => collections ? collections[collectionUrlParam] : null
+  createSelector([selectShopCollections], (collections) =>
+    collections ? collections[collectionUrlParam] : null
   )
 );
 
@@ -29,4 +28,14 @@ export const selectIsCollectionFetching = createSelector(
 export const selectIsCollectionsLoaded = createSelector(
   [selectShop],
   (shop) => !!shop.collections // converts any truthy or falsy value to a boolean, e.g. !!null => false
+);
+
+export const selectIsModalOpen = createSelector(
+  [selectShop],
+  (shop) => shop.isModalOpen
+);
+
+export const selectModalItem = createSelector(
+  [selectShop],
+  (shop) => shop.modalItem
 );
