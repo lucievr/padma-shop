@@ -3,15 +3,20 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import Badge from '@material-ui/core/Badge';
 
-import { toggleCartHidden } from '../../redux/cart/cart.actions';
+import { toggleCartMenu } from '../../redux/cart/cart.actions';
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 
 import './cart-icon.styles.scss';
 
-const CartIcon = ({ toggleCartHidden, itemCount }) => (
-  <div className='cart-icon' onClick={toggleCartHidden}>
+const CartIcon = ({ itemCount, toggleCartMenu }) => (
+  <div 
+    className='cart-icon' 
+    aria-controls="customized-menu"
+    aria-haspopup="true"
+    onClick={(e) => toggleCartMenu(e.currentTarget)}
+  >
     <Badge badgeContent={itemCount}>
       <ShoppingIcon className='shopping-icon' />
     </Badge>
@@ -19,7 +24,7 @@ const CartIcon = ({ toggleCartHidden, itemCount }) => (
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCartHidden: () => dispatch(toggleCartHidden()),
+  toggleCartMenu: (element) => dispatch(toggleCartMenu(element)),
 });
 
 const mapStateToProps = createStructuredSelector({

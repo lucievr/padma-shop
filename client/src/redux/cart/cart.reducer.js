@@ -2,16 +2,16 @@ import CartActionTypes from './cart.types';
 import { addItemToCart, removeItemFromCart } from './cart.utils';
 
 const INITIAL_STATE = {
-  hidden: true,
+  anchorEl: null,
   cartItems: [],
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CartActionTypes.TOGGLE_CART_HIDDEN:
+    case CartActionTypes.TOGGLE_CART_MENU:
       return {
         ...state,
-        hidden: !state.hidden,
+        anchorEl: action.payload,
       };
     case CartActionTypes.ADD_ITEM:
       return {

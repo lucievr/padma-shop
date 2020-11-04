@@ -9,13 +9,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCurrentUser } from '../../redux/user/user.selectors.js';
-import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 
 import { ReactComponent as Logo } from '../../assets/lotus.svg'; // special syntax for importing SVGs
 import './header.styles.scss';
 
-const Header = ({ currentUser, hidden, signOutStart }) => (
+const Header = ({ currentUser, signOutStart }) => (
   <>
     <AppBar position='fixed' className='app-bar'>
       <Toolbar className='toolbar'>
@@ -40,7 +39,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
           )}
           </div>
           <CartIcon />
-        {hidden ? null : <CartDropdown />}
+        <CartDropdown />
       </Toolbar>
     </AppBar>
     <Toolbar id='back-to-top-anchor' />
@@ -49,7 +48,6 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  hidden: selectCartHidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({

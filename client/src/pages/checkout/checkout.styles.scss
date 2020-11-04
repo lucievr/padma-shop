@@ -33,9 +33,15 @@
     margin-left: auto;
     margin-top: 50px;
     &.custom-button {
+      background-color: #698EFC;
       font-size: 28px;
       letter-spacing: 2px;
       font-weight: normal;
+      border: none;
+      &:hover {
+        background-color: #666;
+        color: white;
+      }
     }
   }
 
