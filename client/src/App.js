@@ -11,6 +11,7 @@ import ErrorBoundary from './components/error-boundary/error-boundary.component'
 
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
+import { setWindowDimensions } from './redux/app/app.actions';
 
 const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
 const ShopPage = lazy(() => import('./pages/shop/shop.component'));
@@ -19,7 +20,15 @@ const SignInAndSignUpPage = lazy(() =>
 );
 const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 
-const App = ({ checkUserSession, currentUser }) => {
+const App = ({ checkUserSession, currentUser, setWindowDimensions }) => {
+  const handleResize = () => setWindowDimensions();
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
@@ -57,6 +66,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
+  setWindowDimensions: () => dispatch(setWindowDimensions()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -9,12 +9,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCurrentUser } from '../../redux/user/user.selectors.js';
+import { selectWindowWidth } from '../../redux/app/app.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 
 import { ReactComponent as Logo } from '../../assets/lotus.svg';
 import './header.styles.scss';
 
-const Header = ({ currentUser, signOutStart }) => (
+const Header = ({ currentUser, signOutStart, windowWidth }) => {
+  console.log(windowWidth, 'width');
+
+  return (
   <>
     <AppBar position='fixed' className='app-bar'>
       <Toolbar className='toolbar'>
@@ -44,10 +48,11 @@ const Header = ({ currentUser, signOutStart }) => (
     </AppBar>
     <Toolbar id='back-to-top-anchor' />
   </>
-);
+)};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  windowWidth: selectWindowWidth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
