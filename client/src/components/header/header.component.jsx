@@ -11,7 +11,7 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCurrentUser } from '../../redux/user/user.selectors.js';
 import { signOutStart } from '../../redux/user/user.actions';
 
-import { ReactComponent as Logo } from '../../assets/lotus.svg'; // special syntax for importing SVGs
+import { ReactComponent as Logo } from '../../assets/lotus.svg';
 import './header.styles.scss';
 
 const Header = ({ currentUser, signOutStart }) => (

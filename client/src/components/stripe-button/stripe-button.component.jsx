@@ -3,6 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
 import CustomButton from '../custom-button/custom-button.component';
+import { ReactComponent as DoubleArrow } from '../../assets/double-arrow-right.svg';
 
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
@@ -42,7 +43,10 @@ const StripeCheckoutButton = ({ price }) => {
       token={onToken}
       stripeKey={publishableKey}
     >
-      <CustomButton>PAY NOW</CustomButton>
+      <CustomButton>
+        PAY NOW
+        <DoubleArrow classname='double-arrow' />
+      </CustomButton>
     </StripeCheckout>
   );
 };

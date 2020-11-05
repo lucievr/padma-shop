@@ -1,21 +1,48 @@
 .checkout-page {
-  width: 55%;
-  min-height: 90vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px auto 0;
+  margin: 2rem auto 0;
+
+  @media (max-width: 450px) {
+    width: 95%;
+  }
+
+  @media (min-width: 450px) {
+    width: 85%;
+  }
+
+  @media (min-width: 650px) {
+    width: 75%;
+  }
+
+  @media (min-width: 850px) {
+    width: 65%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 55%;
+  }
 
   .checkout-header {
     width: 100%;
     padding: 10px 0;
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid darkgrey;
+    border-bottom: 1px solid rgb(219, 219, 219);
 
     .header-block {
       text-transform: capitalize;
-      width: 23%;
+      width: 24%;
+      text-align: center;
+
+      &.quantity, &.price {
+        width: 21%;
+      }
+
+      &.name {
+        width: 26%;
+      }
 
       &:last-child {
         width: 8%;
@@ -23,24 +50,46 @@
     }
   }
 
+  .checkout-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .clear-cart {
+      margin-top: 10px;
+      height: 2rem;
+      &:hover {
+        cursor: pointer;
+      }
+      svg {
+        margin-bottom: -1px;
+      }
+    }
+  }
+
   .total {
     margin-top: 30px;
-    margin-left: auto;
-    font-size: 36px;
+    font-size: 1.6rem;
   }
 
   button {
     margin-left: auto;
     margin-top: 50px;
     &.custom-button {
+      width: 200px;
       background-color: #698EFC;
       font-size: 28px;
       letter-spacing: 2px;
-      font-weight: normal;
+      font-weight: bold;
       border: none;
+      padding: 0 5px 0 10px;
+      display: flex;
+      align-items: center;
       &:hover {
         background-color: #666;
         color: white;
+      }
+      svg {
+        margin: 2px 0 0 2px;
       }
     }
   }
@@ -48,7 +97,15 @@
   .test-warning {
     text-align: center;
     margin-top: 40px;
-    font-size: 24px;
+    font-size: 1.1rem;
     color: red;
+  }
+
+  .credit-cards {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
   }
 }

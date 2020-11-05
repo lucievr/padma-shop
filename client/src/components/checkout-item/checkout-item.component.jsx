@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import {
   clearItemFromCart,
   addItem,
   removeItem,
 } from '../../redux/cart/cart.actions';
+
+import { ReactComponent as ArrowRight } from '../../assets/arrow-right.svg';
+import { ReactComponent as ArrowLeft } from '../../assets/arrow-left.svg';
 
 import './checkout-item.styles.scss';
 
@@ -20,17 +24,19 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
       <span className='name'>{name}</span>
       <span className='quantity'>
         <div className='arrow' onClick={() => removeItem(cartItem)}>
-          &#10094;
+          <ArrowLeft className='arrow-left' />
         </div>
         <span className='value'>{quantity}</span>
         <div className='arrow' onClick={() => addItem(cartItem)}>
-          &#10095;
+          <ArrowRight className='arrow-right' />
         </div>
       </span>
       <span className='price'>€ {price.toFixed(2)}</span>
+      <Tooltip title='Remove item' placement='top'>
       <div className='remove-button' onClick={() => clearItem(cartItem)}>
         &#10005;
       </div>
+      </Tooltip>
     </div>
   );
 };
