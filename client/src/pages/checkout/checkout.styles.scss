@@ -36,7 +36,8 @@
       width: 24%;
       text-align: center;
 
-      &.quantity, &.price {
+      &.quantity,
+      &.price {
         width: 21%;
       }
 
@@ -71,26 +72,23 @@
     font-size: 1.6rem;
   }
 
-  button {
-    margin-left: auto;
+  button.custom-button {
     margin-top: 50px;
-    &.custom-button {
-      width: 200px;
-      background-color: #698EFC;
-      font-size: 28px;
-      letter-spacing: 2px;
-      font-weight: bold;
-      border: none;
-      padding: 0 5px 0 10px;
-      display: flex;
-      align-items: center;
-      &:hover {
-        background-color: #666;
-        color: white;
-      }
-      svg {
-        margin: 2px 0 0 2px;
-      }
+    width: 200px;
+    background-color: #698efc;
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    border: none;
+    padding: 0 5px 0 10px;
+    display: flex;
+    align-items: center;
+    &:hover {
+      background-color: #666;
+      color: white;
+    }
+    svg {
+      margin: 2px 0 0 2px;
     }
   }
 
