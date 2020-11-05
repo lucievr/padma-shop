@@ -6,12 +6,11 @@ import Menu from '@material-ui/core/Menu';
 
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
-import { selectCartItems, selectCartAnchorEl } from '../../redux/cart/cart.selectors';
-import { toggleCartMenu } from '../../redux/cart/cart.actions';
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 import './cart-dropdown.styles.scss';
 
-const CartDropdown = ({ cartItems, history, dispatch, anchorEl, toggleCartMenu }) => (
+const CartDropdown = ({ cartItems, history, anchorEl, onClose }) => (
   <Menu 
     className='cart-dropdown'
     elevation={0}
@@ -28,7 +27,7 @@ const CartDropdown = ({ cartItems, history, dispatch, anchorEl, toggleCartMenu }
     anchorEl={anchorEl}
     keepMounted
     open={Boolean(anchorEl)}
-    onClose={() => toggleCartMenu(null)}
+    onClose={onClose}
   >
     <div className='cart-items'>
       {cartItems.length ? (
@@ -41,7 +40,7 @@ const CartDropdown = ({ cartItems, history, dispatch, anchorEl, toggleCartMenu }
     </div>
     <CustomButton onClick={() => {
       history.push('/checkout');
-      toggleCartMenu(null);
+      onClose();
       }}>
       GO TO CHECKOUT
     </CustomButton>
@@ -50,11 +49,6 @@ const CartDropdown = ({ cartItems, history, dispatch, anchorEl, toggleCartMenu }
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-  anchorEl: selectCartAnchorEl,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleCartMenu: (element) => dispatch(toggleCartMenu(element)),
-});
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CartDropdown));
+export default withRouter(connect(mapStateToProps)(CartDropdown));

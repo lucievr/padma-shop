@@ -7,7 +7,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import CartIcon from '../cart-icon/cart-icon.component';
-import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import MobileMenu from '../mobile-menu/mobile-menu.component';
 import { selectCurrentUser } from '../../redux/user/user.selectors.js';
 import { selectWindowWidth } from '../../redux/app/app.selectors';
@@ -27,8 +26,6 @@ const Header = ({ currentUser, signOutStart, windowWidth }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  console.log(windowWidth, 'width');
 
   return (
     <>
@@ -59,12 +56,13 @@ const Header = ({ currentUser, signOutStart, windowWidth }) => {
             </>
           ) : (
             <>
-              <div className='menu-icon'>
-                <MenuIcon
-                  aria-controls='mobile-menu'
-                  aria-haspopup='true'
-                  onClick={handleClick}
-                />
+              <div
+                className='menu-icon'
+                aria-controls='mobile-menu'
+                aria-haspopup='true'
+                onClick={handleClick}
+              >
+                <MenuIcon />
               </div>
               <MobileMenu anchorEl={anchorEl} onClose={handleClose} />
               <Link className='logo-container' to='/'>
@@ -73,7 +71,6 @@ const Header = ({ currentUser, signOutStart, windowWidth }) => {
             </>
           )}
           <CartIcon />
-          <CartDropdown />
         </Toolbar>
       </AppBar>
       <Toolbar id='back-to-top-anchor' />

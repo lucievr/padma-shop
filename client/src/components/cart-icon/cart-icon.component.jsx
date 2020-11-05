@@ -1,34 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import Badge from '@material-ui/core/Badge';
 
-import { toggleCartMenu } from '../../redux/cart/cart.actions';
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
-
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 
 import './cart-icon.styles.scss';
 
-const CartIcon = ({ itemCount, toggleCartMenu }) => (
-  <div 
-    className='cart-icon' 
-    aria-controls="customized-menu"
-    aria-haspopup="true"
-    onClick={(e) => toggleCartMenu(e.currentTarget)}
-  >
-    <Badge badgeContent={itemCount}>
-      <ShoppingIcon className='shopping-icon' />
-    </Badge>
-  </div>
-);
+const CartIcon = ({ itemCount }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleCartMenu: (element) => dispatch(toggleCartMenu(element)),
-});
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <>
+      <div
+        className='cart-icon'
+        aria-controls='customized-menu'
+        aria-haspopup='true'
+        onClick={handleClick}
+      >
+        <Badge badgeContent={itemCount}>
+          <ShoppingIcon className='shopping-icon' />
+        </Badge>
+      </div>
+      <CartDropdown anchorEl={anchorEl} onClose={handleClose} />
+    </>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   itemCount: selectCartItemsCount,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
+export default connect(mapStateToProps)(CartIcon);
