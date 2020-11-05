@@ -6,8 +6,11 @@
 
   .MuiPopover-paper {
     max-width: 280px;
-    min-width: 200px;
+    min-width: 180px;
     min-height: 169px;
+    @media screen and (max-width: 500px) {
+      max-width: 180px;
+    }
   }
 
   .MuiList-root {
