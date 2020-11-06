@@ -1,14 +1,42 @@
 .sign-in {
+  min-width: 250px;
   width: 380px;
   display: flex;
   flex-direction: column;
+  margin: 0 1rem 3rem;
 
   .title {
     margin: 10px 0;
+    font-size: 1.4rem;
+    color: #333;
   }
 
   .buttons {
     display: flex;
     justify-content: space-between;
   }
+
+  .custom-button {
+    min-width: 100px;
+    width: 100%;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    padding: 0 5px;
+    .google-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      margin: 11px 5px 0 0;
+      padding-left: 1px;
+    }
+  }
+}
+
+.group .form-input {
+  background-color: rgb(250, 250, 250);
+  color: #444;
 }

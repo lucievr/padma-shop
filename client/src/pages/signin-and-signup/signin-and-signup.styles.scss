@@ -1,6 +1,8 @@
 .sign-in-and-sign-up {
-  width: 850px;
+  min-width: 70vw;
+  max-width: 90vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   margin: 30px auto;
 }
