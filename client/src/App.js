@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import './App.css';
 
+import ScrollToTop from './components/scroll-to-top/scroll-to-top.component';
 import Header from './components/header/header.component';
 import Spinner from './components/spinner/spinner.component';
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
@@ -27,7 +28,7 @@ const App = ({ checkUserSession, currentUser, setWindowDimensions }) => {
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -37,24 +38,26 @@ const App = ({ checkUserSession, currentUser, setWindowDimensions }) => {
   return (
     <>
       <Header />
-      <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path='/' component={HomePage} />
+      <ScrollToTop>
+        <Switch>
+          <ErrorBoundary>
+            <Suspense fallback={<Spinner />}>
+              <Route exact path='/' component={HomePage} />
 
-            <Route path='/shop' component={ShopPage} />
-            <Route exact path='/checkout' component={CheckoutPage} />
-            <Route
-              exact
-              path='/signin'
-              render={() =>
-                currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
-              }
-            />
-            <Route exact path='/contact' component={ContactPage} />
-          </Suspense>
-        </ErrorBoundary>
-      </Switch>
+              <Route path='/shop' component={ShopPage} />
+              <Route exact path='/checkout' component={CheckoutPage} />
+              <Route
+                exact
+                path='/signin'
+                render={() =>
+                  currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
+                }
+              />
+              <Route exact path='/contact' component={ContactPage} />
+            </Suspense>
+          </ErrorBoundary>
+        </Switch>
+      </ScrollToTop>
       <footer className='footer'>
         <span>© {new Date().getFullYear()} Padma Co.</span>
       </footer>
