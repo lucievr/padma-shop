@@ -6,7 +6,7 @@
 
   .MuiPaper-root {
     border: 1px solid rgb(219, 219, 219);
-    width: 120px;
+    width: 160px;
   }
 
   .MuiList-padding {
@@ -19,7 +19,15 @@
   .MuiMenuItem-root {
     font-family: 'Open Sans Condensed';
     border-bottom: 1px solid rgb(219, 219, 219);
+    min-height: 40px;
+    height: 40px;
     padding-left: 20px;
+    &.submenu-item {
+      min-height: 35px;
+      height: 35px;
+      font-size: 1rem;
+      padding: 6px 6px 6px 0;
+    }
   }
 
   .option {

@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { signOutStart } from '../../redux/user/user.actions';
 import { selectCurrentUser } from '../../redux/user/user.selectors.js';
 
+import { ReactComponent as ArrowRight } from '../../assets/arrow-right.svg';
 import './mobile-menu.styles.scss';
 
 const MobileMenu = ({ anchorEl, onClose, currentUser, signOutStart }) => {
@@ -38,6 +39,40 @@ const MobileMenu = ({ anchorEl, onClose, currentUser, signOutStart }) => {
       <MenuItem>
         <Link className='option' to='/shop' onClick={onClose}>
           SHOP
+        </Link>
+      </MenuItem>
+      <MenuItem className='submenu-item'>
+        <ArrowRight />
+        <Link className='option' to='/shop/soaps' onClick={onClose}>
+          Soaps
+        </Link>
+      </MenuItem>
+      <MenuItem className='submenu-item'>
+        <ArrowRight />
+        <Link className='option' to='/shop/essential-oils' onClick={onClose}>
+          Essential oils
+        </Link>
+      </MenuItem>
+      <MenuItem className='submenu-item'>
+        <ArrowRight />
+        <Link className='option' to='/shop/bath-salts' onClick={onClose}>
+          Bath salts
+        </Link>
+      </MenuItem>
+      <MenuItem className='submenu-item'>
+        <ArrowRight />
+        <Link
+          className='option'
+          to='/shop/bathroom-essentials'
+          onClick={onClose}
+        >
+          Bathroom essentials
+        </Link>
+      </MenuItem>
+      <MenuItem className='submenu-item'>
+        <ArrowRight />
+        <Link className='option' to='/shop/covid-essentials' onClick={onClose}>
+          COVID essentials
         </Link>
       </MenuItem>
       <MenuItem>
