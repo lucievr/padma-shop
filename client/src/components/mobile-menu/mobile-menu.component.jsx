@@ -41,7 +41,7 @@ const MobileMenu = ({ anchorEl, onClose, currentUser, signOutStart }) => {
         </Link>
       </MenuItem>
       <MenuItem>
-        <Link className='option' to='/shop' onClick={onClose}>
+        <Link className='option' to='/contact' onClick={onClose}>
           CONTACT
         </Link>
       </MenuItem>

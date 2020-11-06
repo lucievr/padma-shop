@@ -19,6 +19,7 @@ const SignInAndSignUpPage = lazy(() =>
   import('./pages/signin-and-signup/signin-and-signup.component')
 );
 const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
+const ContactPage = lazy(() => import('./pages/contact/contact.component'));
 
 const App = ({ checkUserSession, currentUser, setWindowDimensions }) => {
   const handleResize = () => setWindowDimensions();
@@ -50,6 +51,7 @@ const App = ({ checkUserSession, currentUser, setWindowDimensions }) => {
                 currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
               }
             />
+            <Route exact path='/contact' component={ContactPage} />
           </Suspense>
         </ErrorBoundary>
       </Switch>

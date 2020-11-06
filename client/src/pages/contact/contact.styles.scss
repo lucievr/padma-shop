@@ -1,0 +1,70 @@
+.contact-page {
+  display: flex;
+  min-width: 70vw;
+  min-height: 70vh;
+  max-width: 90vw;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 30px auto;
+
+  .image-container {
+    min-width: 250px;
+    min-height: 250px;
+    width: 400px;
+    height: 400px;
+    margin: 0 1rem 2rem;
+    background-size: cover;
+  }
+
+  h2, h4, .statement {
+    color: #333;
+  }
+
+  .about-padma {
+    min-width: 250px;
+    min-height: 250px;
+    width: 400px;
+    height: 400px;
+    margin: 0 1rem 2rem;
+    line-height: 1.5;
+    text-align: justify;
+    padding: 15px;
+    border: 1px solid #dbdbdb;
+    @media (max-width: 550px) {
+      min-height: 400px;
+      height: auto;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 5px 10px;
+      border-bottom: none;
+      svg {
+        width: 30px;
+        height: 30px;
+        margin-right: 6px;
+      }
+    }
+    .statement {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding-bottom: 1rem;
+      letter-spacing: 0.5px;
+      svg {
+        width: 20px;
+        height: 20px;
+        margin: 4px 4px 0;
+      }
+    }
+  }
+
+
+}
