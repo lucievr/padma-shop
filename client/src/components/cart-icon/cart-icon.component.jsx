@@ -24,7 +24,7 @@ const CartIcon = ({ itemCount }) => {
     <>
       <div
         className='cart-icon'
-        aria-controls='customized-menu'
+        aria-controls='cart-menu'
         aria-haspopup='true'
         onClick={handleClick}
       >

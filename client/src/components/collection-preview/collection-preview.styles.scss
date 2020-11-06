@@ -4,12 +4,19 @@
   align-items: center;
   margin-bottom: 2rem;
 
-  @media screen and (max-width: 800px) {
-    
-  }
-
   .title {
     margin-bottom: 3rem;
+    font-size: 1.5rem;
+
+    @media screen and (min-width: 450px) {
+      font-size: 1.6rem;
+    }
+    @media screen and (min-width: 600px) {
+      font-size: 1.7rem;
+    }
+    @media screen and (min-width: 850px) {
+      font-size: 1.8rem;
+    }
   }
 
   .preview {

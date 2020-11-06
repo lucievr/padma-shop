@@ -84,5 +84,9 @@
     @media screen and (max-width: 800px) {
       max-width: 155px;
     }
+    @media screen and (max-width: 600px) {
+      max-width: 125px;
+      min-width: 100px;
+    }
   }
 }

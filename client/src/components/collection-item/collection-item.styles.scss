@@ -1,7 +1,7 @@
 .collection-item {
   width: 23vw;
   height: calc(23vw + 3.5rem + 60px);
-  min-width: 150px;
+  min-width: 250px;
   min-height: calc(150px + 3.5rem + 60px);
   display: flex;
   flex-direction: column;
@@ -31,14 +31,14 @@
 
   .custom-button {
     width: 23vw;
-    min-width: 150px;
+    min-width: 250px;
     display: flex;
     color: black;
     background-color: white;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     border: none;
     &:hover {
-      background-color: #698EFC;
+      background-color: #8282fc;
       color: white;
     }
   }
@@ -54,10 +54,6 @@
     .name {
       font-weight: 600;
       color: #4d4d4d;
-    }
-
-    .price {
-
     }
   }
 }

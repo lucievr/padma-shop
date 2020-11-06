@@ -37,6 +37,7 @@
     .custom-button {
       width: 90%;
       margin: 10px 0;
+      padding: 0 20px;
     }
 
     .empty-message {
@@ -48,31 +49,3 @@
 
   }
 }
-
-
-// .cart-dropdown {
-//   position: absolute;
-//   width: 240px;
-//   height: 340px;
-//   display: flex;
-//   flex-direction: column;
-//   padding: 20px;
-//   border: 1px solid black;
-//   background-color: white;
-//   top: 90px;
-//   right: 40px;
-//   z-index: 5;
-
-
-
-//   .cart-items {
-//     height: 240px;
-//     display: flex;
-//     flex-direction: column;
-//     overflow-y: scroll;
-//   }
-
-//   button {
-//     margin-top: auto;
-//   }
-// }

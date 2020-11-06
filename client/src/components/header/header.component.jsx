@@ -65,7 +65,7 @@ const Header = ({ currentUser, signOutStart, windowWidth }) => {
                 <MenuIcon />
               </div>
               <MobileMenu anchorEl={anchorEl} onClose={handleClose} />
-              <Link className='logo-container' to='/'>
+              <Link className='logo-container mobile' to='/'>
                 <Logo className='logo' />
               </Link>
             </>

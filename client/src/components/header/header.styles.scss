@@ -18,13 +18,19 @@ header.app-bar {
 
     .logo-container {
       display: flex;
+      justify-content: center;
       svg {
         width: 36px;
         height: 36px;
-        @media (max-width: 450px) {
+        @media (max-width: 500px) {
           width: 30px;
           height: 30px;
         }
+      }
+      &.mobile {
+        width: 40px;
+        height: 40px;
+        padding-top: 2px;
       }
     }
 
@@ -48,11 +54,15 @@ header.app-bar {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
       &:hover {
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0.04);
+      }
+      svg {
+        width: 30px;
+        height: 30px;
       }
     }
   }

@@ -15,7 +15,7 @@ const ContactPage = () => (
       <div className='statement'>
         We <HeartIcon /> everything nature!
       </div>
-      <div>Our collection includes 100% natural organic cosmetics and zero waste bathroom products. Any questions or suggestions for us? Get in touch.</div>
+      <div className='description'>Our collection includes 100% natural organic cosmetics and zero waste bathroom products. Any questions or suggestions for us? Get in touch.</div>
       <div className='contact'>
         <h4>Contact: </h4>
         <div>Av. da República 16, 1050-191 Lisboa, Portugal</div>

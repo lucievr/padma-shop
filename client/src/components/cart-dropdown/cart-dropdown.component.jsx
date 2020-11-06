@@ -23,7 +23,7 @@ const CartDropdown = ({ cartItems, history, anchorEl, onClose }) => (
       vertical: 'top',
       horizontal: 'center',
     }}
-    id="customized-menu"
+    id="cart-menu"
     anchorEl={anchorEl}
     keepMounted
     open={Boolean(anchorEl)}
