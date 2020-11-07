@@ -2,11 +2,13 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
 import { selectModalItem } from '../../redux/shop/shop.selectors';
 import CollectionItem from '../collection-item/collection-item.component';
-import CustomButton from '../custom-button/custom-button.component';
-import './collection-preview.styles.scss';
 import ItemDetailModal from '../item-detail-modal/item-detail-modal.component';
+import CustomButton from '../custom-button/custom-button.component';
+
+import './collection-preview.styles.scss';
 
 const CollectionPreview = ({ title, items, modalItem, history, match }) => (
   <div className='collection-preview'>

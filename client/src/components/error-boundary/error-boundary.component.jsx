@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './error-boundary.styles.scss'
+import './error-boundary.styles.scss';
 
 class ErrorBoundary extends React.Component {
   constructor() {

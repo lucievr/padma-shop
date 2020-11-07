@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
-
 import Spinner from '../../components/spinner/spinner.component';
 import BackToTopButton from '../../components/back-to-top-button/back-to-top-button.component';
 

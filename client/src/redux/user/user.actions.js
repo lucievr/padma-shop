@@ -33,22 +33,22 @@ export const signOutSuccess = () => ({
 
 export const signOutFailure = (error) => ({
   type: UserActionTypes.SIGNOUT_FAILURE,
-  payload: error
+  payload: error,
 });
 
 export const signUpStart = (userCredentials) => ({
   type: UserActionTypes.SIGNUP_START,
-  payload: userCredentials
+  payload: userCredentials,
 });
 
 export const signUpSuccess = ({ user, additionalData }) => ({
   type: UserActionTypes.SIGNUP_SUCCESS,
-  payload: { user, additionalData }
+  payload: { user, additionalData },
 });
 
 export const signUpFailure = (error) => ({
   type: UserActionTypes.SIGNUP_FAILURE,
-  payload: error
+  payload: error,
 });
 
 export const addToFavourites = (itemId) => ({

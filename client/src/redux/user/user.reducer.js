@@ -19,7 +19,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentUser: null,
         error: null,
-      }
+      };
     case UserActionTypes.SIGNIN_FAILURE:
     case UserActionTypes.SIGNOUT_FAILURE:
     case UserActionTypes.SIGNUP_FAILURE:
@@ -31,16 +31,21 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: {
-          ...state.currentUser, favourites: addItemToFavourites(state.currentUser, action.payload),
-        }
+          ...state.currentUser,
+          favourites: addItemToFavourites(state.currentUser, action.payload),
+        },
       };
-      case UserActionTypes.REMOVE_FROM_FAVOURITES:
-        return {
-          ...state,
-          currentUser: {
-            ...state.currentUser, favourites: removeItemFromFavourites(state.currentUser, action.payload),
-          }
-        };
+    case UserActionTypes.REMOVE_FROM_FAVOURITES:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          favourites: removeItemFromFavourites(
+            state.currentUser,
+            action.payload
+          ),
+        },
+      };
     default:
       return state;
   }

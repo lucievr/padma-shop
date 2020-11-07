@@ -29,15 +29,15 @@
     justify-content: center;
 
     .custom-button {
-    padding: 0 10px;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-    background-color: #8282fc;
-    color: white;
-    &:hover {
-      background-color: #666;
+      padding: 0 10px;
+      font-size: 1.1rem;
+      letter-spacing: 1.5px;
+      background-color: #8282fc;
       color: white;
-    }
+      &:hover {
+        background-color: #666;
+        color: white;
+      }
     }
   }
 }

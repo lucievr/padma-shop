@@ -39,11 +39,7 @@ const ItemDetailModal = ({
           avatar={<LikeButton item={modalItem} />}
           action={<Close className='close' onClick={closeItemModal} />}
           title={`${name} (${quantity})`}
-          subheader={
-            <span>
-              € {price.toFixed(2)}
-            </span>
-          }
+          subheader={<span>€ {price.toFixed(2)}</span>}
         />
         <CardMedia className='card-image' image={imageUrl} />
         <CardContent>{description}</CardContent>

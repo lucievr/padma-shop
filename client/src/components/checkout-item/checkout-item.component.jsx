@@ -10,7 +10,6 @@ import {
 
 import { ReactComponent as ArrowRight } from '../../assets/arrow-right.svg';
 import { ReactComponent as ArrowLeft } from '../../assets/arrow-left.svg';
-
 import './checkout-item.styles.scss';
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
@@ -33,9 +32,9 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
       </span>
       <span className='price'>€ {price.toFixed(2)}</span>
       <Tooltip title='Remove item' placement='top'>
-      <div className='remove-button' onClick={() => clearItem(cartItem)}>
-        &#10005;
-      </div>
+        <div className='remove-button' onClick={() => clearItem(cartItem)}>
+          &#10005;
+        </div>
       </Tooltip>
     </div>
   );

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import { addItem } from '../../redux/cart/cart.actions';
 import { openItemModal } from '../../redux/shop/shop.actions';
-
 import LikeButton from '../like-button/like-button.component';
 import CustomButton from '../custom-button/custom-button.component';
+
 import './collection-item.styles.scss';
 
 const CollectionItem = ({ item, addItem, openItemModal }) => {

@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
-import CartIcon from '../cart-icon/cart-icon.component';
-import MobileMenu from '../mobile-menu/mobile-menu.component';
 import { selectCurrentUser } from '../../redux/user/user.selectors.js';
 import { selectWindowWidth } from '../../redux/app/app.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
-
+import CartIcon from '../cart-icon/cart-icon.component';
+import MobileMenu from '../mobile-menu/mobile-menu.component';
 import { ReactComponent as Logo } from '../../assets/lotus.svg';
 import { ReactComponent as MenuIcon } from '../../assets/menu.svg';
+
 import './header.styles.scss';
 
 const Header = ({ currentUser, signOutStart, windowWidth }) => {

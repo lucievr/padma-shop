@@ -4,14 +4,14 @@ import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
-import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 import './cart-dropdown.styles.scss';
 
 const CartDropdown = ({ cartItems, history, anchorEl, onClose }) => (
-  <Menu 
+  <Menu
     className='cart-dropdown'
     elevation={0}
     getContentAnchorEl={null}
@@ -23,7 +23,7 @@ const CartDropdown = ({ cartItems, history, anchorEl, onClose }) => (
       vertical: 'top',
       horizontal: 'center',
     }}
-    id="cart-menu"
+    id='cart-menu'
     anchorEl={anchorEl}
     keepMounted
     open={Boolean(anchorEl)}
@@ -38,10 +38,12 @@ const CartDropdown = ({ cartItems, history, anchorEl, onClose }) => (
         <span className='empty-message'>Your cart is empty</span>
       )}
     </div>
-    <CustomButton onClick={() => {
-      history.push('/checkout');
-      onClose();
-      }}>
+    <CustomButton
+      onClick={() => {
+        history.push('/checkout');
+        onClose();
+      }}
+    >
       GO TO CHECKOUT
     </CustomButton>
   </Menu>

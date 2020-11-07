@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { selectCollection } from '../../redux/shop/shop.selectors';
-
 import CollectionItem from '../../components/collection-item/collection-item.component';
 import ItemDetailModal from '../../components/item-detail-modal/item-detail-modal.component';
 
@@ -10,8 +9,6 @@ import './collection.styles.scss';
 
 const CollectionPage = ({ collection, modalItem }) => {
   const { title, items } = collection;
-
-  console.log(modalItem, 'modal');
 
   return (
     <div className='collection-page'>
@@ -21,7 +18,7 @@ const CollectionPage = ({ collection, modalItem }) => {
           <CollectionItem key={item.id} item={item} />
         ))}
       </div>
-      { modalItem ? <ItemDetailModal /> : null }
+      {modalItem ? <ItemDetailModal /> : null}
     </div>
   );
 };

@@ -14,14 +14,13 @@ const config = {
 };
 
 export const createUserProfileDoc = async (userAuth, additionalData) => {
-  if (!userAuth) return; // if no user signed in
+  if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
 
   const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
-    // if no user in db
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -40,12 +39,12 @@ export const createUserProfileDoc = async (userAuth, additionalData) => {
   return userRef;
 };
 
-export const updateUserProfileDoc = async (userId, fieldName, fieldValue ) => {
+export const updateUserProfileDoc = async (userId, fieldName, fieldValue) => {
   const userRef = firestore.doc(`users/${userId}`);
 
   try {
     await userRef.update({
-      [fieldName]: fieldValue
+      [fieldName]: fieldValue,
     });
   } catch (error) {
     console.log('error updating user', error.message);
@@ -58,7 +57,7 @@ export const addCollectionAndDocuments = async (
 ) => {
   const collectionRef = firestore.collection(collectionKey);
 
-  const batch = firestore.batch(); // used for multiple writes as a single operation
+  const batch = firestore.batch(); // used for multiple writes as a single op
   objectsToAdd.forEach((obj) => {
     const newDocRef = collectionRef.doc(); // firebase creates a ref with an auto-generated unique id
     batch.set(newDocRef, obj);

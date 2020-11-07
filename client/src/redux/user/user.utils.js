@@ -26,7 +26,7 @@ export const removeItemFromFavourites = (currentUser, itemId) => {
       updateUserProfileDoc(currentUser.id, 'favourites', [...newFavourites]);
       return [...newFavourites];
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 };

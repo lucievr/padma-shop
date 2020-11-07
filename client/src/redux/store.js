@@ -18,4 +18,4 @@ export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 sagaMiddleware.run(rootSaga);
 
-export const persistor = persistStore(store); // persisted store to keep data after refresh
+export const persistor = persistStore(store);

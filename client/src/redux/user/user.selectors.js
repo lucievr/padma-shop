@@ -9,5 +9,5 @@ export const selectCurrentUser = createSelector(
 
 export const selectUserFavourites = createSelector(
   [selectCurrentUser],
-  (currentUser) => currentUser ? currentUser.favourites : null
+  (currentUser) => (currentUser ? currentUser.favourites : null)
 );

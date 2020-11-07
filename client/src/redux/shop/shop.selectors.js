@@ -27,7 +27,7 @@ export const selectIsCollectionFetching = createSelector(
 
 export const selectIsCollectionsLoaded = createSelector(
   [selectShop],
-  (shop) => !!shop.collections // converts any truthy or falsy value to a boolean, e.g. !!null => false
+  (shop) => !!shop.collections // converts falsy value to a boolean, e.g. !!null => false
 );
 
 export const selectIsModalOpen = createSelector(

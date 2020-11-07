@@ -16,11 +16,14 @@ export function* fetchCollectionsAsync() {
   try {
     const collectionRef = firestore.collection('collections');
     const snapshot = yield collectionRef.get();
-    const collectionsMap = yield call(convertCollectionsSnapshotToMap, snapshot); // call with call the func (1st param) with the arg (2nd param)
-    // put is sagas effect similar to dispatch
+    const collectionsMap = yield call(
+      convertCollectionsSnapshotToMap,
+      snapshot
+    ); // call will call the func (1st param) with the arg (2nd param)
     yield put(fetchCollectionsSuccess(collectionsMap));
+    // put is sagas effect similar to dispatch
   } catch (error) {
-    yield put(fetchCollectionsFailure(error.message))
+    yield put(fetchCollectionsFailure(error.message));
   }
 }
 
@@ -32,5 +35,5 @@ export function* fetchCollectionsStart() {
 }
 
 export function* shopSagas() {
-  yield all([call(fetchCollectionsStart)])
+  yield all([call(fetchCollectionsStart)]);
 }

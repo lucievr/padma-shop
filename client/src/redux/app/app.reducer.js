@@ -6,15 +6,15 @@ const INITIAL_STATE = {
 };
 
 const appReducer = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case AppActionTypes.SET_WINDOW_DIMENSIONS:
       return {
         ...state,
         windowDimensions: getWindowDimensions(),
-      }
+      };
     default:
       return state;
   }
-}
+};
 
 export default appReducer;

@@ -7,8 +7,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import { signOutStart } from '../../redux/user/user.actions';
 import { selectCurrentUser } from '../../redux/user/user.selectors.js';
-
 import { ReactComponent as ArrowRight } from '../../assets/arrow-right.svg';
+
 import './mobile-menu.styles.scss';
 
 const MobileMenu = ({ anchorEl, onClose, currentUser, signOutStart }) => {
