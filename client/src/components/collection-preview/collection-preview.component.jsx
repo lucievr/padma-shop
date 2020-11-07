@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectModalItem } from '../../redux/shop/shop.selectors';
@@ -10,7 +10,9 @@ import ItemDetailModal from '../item-detail-modal/item-detail-modal.component';
 
 const CollectionPreview = ({ title, items, modalItem, history, match }) => (
   <div className='collection-preview'>
-    <h2 className='title'>{title}</h2>
+    <Link to={`${match.url}/${title.split(' ').join('-').toLowerCase()}`}>
+      <h2 className='title'>{title}</h2>
+    </Link>
     <div className='preview'>
       {items
         .filter((_, index) => index < 5)
