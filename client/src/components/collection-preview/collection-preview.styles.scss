@@ -27,6 +27,9 @@
 
   .collection-item.see-more {
     justify-content: center;
+    height: unset;
+    min-height: unset;
+    margin: 0 1rem 1rem;
 
     .custom-button {
       padding: 0 10px;
