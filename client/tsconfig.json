@@ -13,6 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,

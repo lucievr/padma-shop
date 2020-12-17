@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
-import { selectCurrentUser } from '../../redux/user/user.selectors.js';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectWindowWidth } from '../../redux/app/app.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 import CartIcon from '../cart-icon/cart-icon.component';

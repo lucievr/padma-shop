@@ -1,4 +1,17 @@
-enum UserActionTypes {
+export interface User {
+  id: string;
+  displayName: string;
+  email: string;
+  createdAt: Date;
+  favourites?: number[];
+}
+
+export interface userState {
+  readonly currentUser: User | null;
+  readonly error: string | null;
+}
+
+export enum UserActionTypes {
   SET_CURRENT_USER = 'SET_CURRENT_USER',
   GOOGLE_SIGNIN_START = 'GOOGLE_SIGNIN_START',
   EMAIL_SIGNIN_START ='EMAIL_SIGNIN_START',
@@ -11,8 +24,5 @@ enum UserActionTypes {
   SIGNUP_START = 'SIGNUP_START',
   SIGNUP_SUCCESS = 'SIGNUP_SUCCESS',
   SIGNUP_FAILURE = 'SIGNUP_FAILURE',
-  ADD_TO_FAVOURITES = 'ADD_TO_FAVOURITES',
-  REMOVE_FROM_FAVOURITES = 'REMOVE_FROM_FAVOURITES'
+  UPDATE_USER = 'UPDATE_USER',
 };
-
-export default UserActionTypes;

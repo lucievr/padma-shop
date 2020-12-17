@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 import memoize from 'lodash.memoize';
+import { ApplicationState } from '../store';
 
-const selectShop = (state) => state.shop;
+const selectShop = (state: ApplicationState) => state.shop;
 
 export const selectShopCollections = createSelector(
   [selectShop],

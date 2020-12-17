@@ -3,6 +3,8 @@ import { all, call } from 'redux-saga/effects';
 
 import { cartState } from './cart/cart.types';
 import { directoryState } from './directory/directory.types';
+import { userState } from './user/user.types';
+import { appState } from './app/app.types';
 import { shopState } from './shop/shop.types';
 import { shopSagas } from './shop/shop.sagas';
 import { userSagas } from './user/user.sagas';
@@ -13,10 +15,12 @@ import cartReducer from './cart/cart.reducer';
 import directoryReducer from './directory/directory.reducer';
 import shopReducer from './shop/shop.reducer';
 
-export interface ApplicationState { // TODO
+export interface ApplicationState {
   cart: cartState;
   directory: directoryState;
   shop: shopState;
+  user: userState;
+  app: appState;
 }
 
 export const rootReducer = combineReducers({

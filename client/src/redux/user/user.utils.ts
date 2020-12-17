@@ -1,6 +1,7 @@
+import { User } from './user.types';
 import { updateUserProfileDoc } from '../../firebase/firebase.utils';
 
-export const addItemToFavourites = (currentUser, itemId) => {
+export const addItemToFavourites = (currentUser: User, itemId: number) => {
   if (currentUser.favourites) {
     try {
       updateUserProfileDoc(currentUser.id, 'favourites', [
@@ -17,7 +18,7 @@ export const addItemToFavourites = (currentUser, itemId) => {
   }
 };
 
-export const removeItemFromFavourites = (currentUser, itemId) => {
+export const removeItemFromFavourites = (currentUser: User, itemId: number) => {
   if (currentUser.favourites) {
     try {
       const newFavourites = currentUser.favourites.filter(

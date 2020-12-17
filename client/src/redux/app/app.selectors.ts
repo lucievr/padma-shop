@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
+import { ApplicationState } from '../store';
 
-const selectApp = (state) => state.app;
+const selectApp = (state: ApplicationState) => state.app;
 
 export const selectWindowDimensions = createSelector(
   [selectApp],

@@ -8,23 +8,18 @@ import MuiAlert from '@material-ui/lab/Alert';
 import {
   selectCurrentUser,
   selectUserFavourites,
-} from '../../redux/user/user.selectors.js';
+} from '../../redux/user/user.selectors';
+import { updateUser } from '../../redux/user/user.actions';
 import {
-  addToFavourites,
-  removeFromFavourites,
-} from '../../redux/user/user.actions';
+  addItemToFavourites,
+  removeItemFromFavourites,
+} from '../../redux/user/user.utils.ts';
 
 import { ReactComponent as HeartOutlined } from '../../assets/heart-outlined.svg';
 import { ReactComponent as HeartFilled } from '../../assets/heart-filled.svg';
 import './like-button.styles.scss';
 
-const LikeButton = ({
-  item,
-  userFavourites,
-  currentUser,
-  addToFavourites,
-  removeFromFavourites,
-}) => {
+const LikeButton = ({ item, updateUser, userFavourites, currentUser }) => {
   const [alertOpen, setAlertOpen] = useState(false);
 
   const handleClose = (_, reason) => {
@@ -34,12 +29,16 @@ const LikeButton = ({
     setAlertOpen(false);
   };
 
-  const handleAddToFavourites = () =>
-    currentUser ? addToFavourites(item.id) : setAlertOpen(true);
+  const handleAddToFavourites = () => {
+    if (!currentUser) return setAlertOpen(true);
+    const updatedFavourites = addItemToFavourites(currentUser, item.id);
+    updateUser({ ...currentUser, favourites: updatedFavourites });
+  };
 
   const handleRemoveFromFavourites = () => {
     if (!currentUser) return;
-    removeFromFavourites(item.id);
+    const updatedFavourites = removeItemFromFavourites(currentUser, item.id);
+    updateUser({ ...currentUser, favourites: updatedFavourites });
   };
 
   return (
@@ -79,8 +78,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToFavourites: (itemId) => dispatch(addToFavourites(itemId)),
-  removeFromFavourites: (itemId) => dispatch(removeFromFavourites(itemId)),
+  updateUser: (updatedUser) => dispatch(updateUser(updatedUser)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LikeButton);
