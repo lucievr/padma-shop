@@ -1,8 +1,8 @@
-import React, { useEffect, lazy, Suspense } from 'react';
-import { Route } from 'react-router-dom';
+import React, { useEffect, lazy, Suspense, FC } from 'react';
+import { Route, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart, Dispatch } from '../../redux/shop/shop.actions';
 import Spinner from '../../components/spinner/spinner.component';
 import BackToTopButton from '../../components/back-to-top-button/back-to-top-button.component';
 
@@ -13,7 +13,11 @@ const CollectionPageContainer = lazy(() =>
   import('../collection/collection.container')
 );
 
-const ShopPage = ({ match, fetchCollectionsStart }) => {
+interface ShopPageProps extends RouteComponentProps {
+  fetchCollectionsStart: () => void;
+}
+
+const ShopPage: FC<ShopPageProps> = ({ match, fetchCollectionsStart }) => {
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);
@@ -36,7 +40,7 @@ const ShopPage = ({ match, fetchCollectionsStart }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
 });
 

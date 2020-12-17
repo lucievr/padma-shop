@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose} from 'redux'
@@ -23,4 +24,4 @@ const CollectionsOverviewContainer = compose(
   WithSpinner
 )(CollectionsOverview);
 
-export default CollectionsOverviewContainer;
+export default CollectionsOverviewContainer as FC;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -6,7 +6,9 @@ import {
   selectCartItems,
   selectCartTotal,
 } from '../../redux/cart/cart.selectors';
-import { clearCart } from '../../redux/cart/cart.actions';
+import { clearCart, Dispatch } from '../../redux/cart/cart.actions';
+import { CartItem } from '../../redux/cart/cart.types';
+import { ApplicationState } from '../../redux/store';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
@@ -19,7 +21,13 @@ import { ReactComponent as Bin } from '../../assets/bin.svg';
 
 import './checkout.styles.scss';
 
-const CheckoutPage = ({ cartItems, total, clearCart }) => {
+type CheckoutPageProps = {
+  cartItems: CartItem[];
+  total: string;
+  clearCart: () => void;
+}
+
+const CheckoutPage: FC<CheckoutPageProps> = ({ cartItems, total, clearCart }) => {
   let finalTotal = Number(total);
 
   if (Number(total) < 49) {
@@ -55,8 +63,9 @@ const CheckoutPage = ({ cartItems, total, clearCart }) => {
             <div className='total-price'>
               <span className='subtotal'>Subtotal: € {total}</span>
               <span className='shipping'>
-                Shipping:{' '}
-                {total < 49 ? '€ 4.95' : <span className='free'>FREE</span>}
+                Shipping:
+                &nbsp;
+                {Number(total) < 49 ? '€ 4.95' : <span className='free'>FREE</span>}
               </span>
               <span className='total'>TOTAL: € {finalTotal.toFixed(2)}</span>
             </div>
@@ -84,12 +93,17 @@ const CheckoutPage = ({ cartItems, total, clearCart }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
+interface Selection {
+  cartItems: CartItem[];
+  total: string;
+}
+
+const mapStateToProps = createStructuredSelector<ApplicationState, Selection>({
   cartItems: selectCartItems,
   total: selectCartTotal,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   clearCart: () => dispatch(clearCart()),
 });
 
