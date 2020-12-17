@@ -32,7 +32,7 @@ const CollectionItem: FC<CollectionItemProps> = ({ item, addItem, openItemModal 
         }}
         onClick={() => openItemModal(item)}
       />
-      <LikeButton item={item} />
+      <LikeButton itemId={item.id} />
       <CustomButton onClick={() => addItem(item)}>Add to cart</CustomButton>
     </div>
   );

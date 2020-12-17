@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, FC, SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { withRouter } from 'react-router-dom';
-import StripeCheckout from 'react-stripe-checkout';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import StripeCheckout, { Token } from 'react-stripe-checkout';
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
-import { clearCart } from '../../redux/cart/cart.actions';
+import { ApplicationState } from '../../redux/store';
+import { clearCart, Dispatch } from '../../redux/cart/cart.actions';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { User } from '../../redux/user/user.types';
 
 import CustomButton from '../custom-button/custom-button.component';
 import { ReactComponent as DoubleArrow } from '../../assets/double-arrow-right.svg';
 
-const StripeCheckoutButton = ({ price, history, currentUser, clearCart }) => {
+interface StripeCheckoutProps extends RouteComponentProps {
+  price: number;
+  currentUser: User | null;
+  clearCart: () => void;
+}
+
+const StripeCheckoutButton: FC<StripeCheckoutProps> = ({ price, history, currentUser, clearCart }) => {
   const priceForStripe = price * 100;
   const publishableKey = 'pk_test_WCNEw15nsFQIhLBa1t7b1C9W00kQiGJ8zf';
 
@@ -31,14 +39,14 @@ const StripeCheckoutButton = ({ price, history, currentUser, clearCart }) => {
     setAlertOpen(true);
   };
 
-  const handleClose = (_, reason) => {
+  const handleClose = (_: SyntheticEvent<Element, Event>, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
     setAlertOpen(false);
   };
 
-  const onToken = (token) => {
+  const onToken = (token: Token) => {
     axios({
       url: 'payment',
       method: 'post',
@@ -93,7 +101,7 @@ const StripeCheckoutButton = ({ price, history, currentUser, clearCart }) => {
       >
         <MuiAlert
           onClose={handleClose}
-          severity={alertMsg.type}
+          severity='info'
           variant='filled'
         >
           {alertMsg.content}
@@ -103,11 +111,15 @@ const StripeCheckoutButton = ({ price, history, currentUser, clearCart }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
+interface Selection {
+  currentUser: User | null;
+}
+
+const mapStateToProps = createStructuredSelector<ApplicationState, Selection>({
   currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   clearCart: () => dispatch(clearCart()),
 });
 

@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, FC, SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import Tooltip from '@material-ui/core/Tooltip';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
+import { ApplicationState } from '../../redux/store';
 import {
   selectCurrentUser,
   selectUserFavourites,
 } from '../../redux/user/user.selectors';
-import { updateUser } from '../../redux/user/user.actions';
+import { updateUser, Dispatch } from '../../redux/user/user.actions';
 import {
   addItemToFavourites,
   removeItemFromFavourites,
-} from '../../redux/user/user.utils.ts';
+} from '../../redux/user/user.utils';
+import { User } from '../../redux/user/user.types';
 
 import { ReactComponent as HeartOutlined } from '../../assets/heart-outlined.svg';
 import { ReactComponent as HeartFilled } from '../../assets/heart-filled.svg';
 import './like-button.styles.scss';
 
-const LikeButton = ({ item, updateUser, userFavourites, currentUser }) => {
+type LikeButtonProps = {
+  itemId: number;
+  updateUser: (user: User) => void;
+  userFavourites: number[] | null | undefined;
+  currentUser: User | null;
+}
+
+const LikeButton: FC<LikeButtonProps> = ({ itemId, updateUser, userFavourites, currentUser }) => {
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const handleClose = (_, reason) => {
+  const handleClose = (_: SyntheticEvent<Element, Event>, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -31,19 +40,19 @@ const LikeButton = ({ item, updateUser, userFavourites, currentUser }) => {
 
   const handleAddToFavourites = () => {
     if (!currentUser) return setAlertOpen(true);
-    const updatedFavourites = addItemToFavourites(currentUser, item.id);
+    const updatedFavourites = addItemToFavourites(currentUser, itemId);
     updateUser({ ...currentUser, favourites: updatedFavourites });
   };
 
   const handleRemoveFromFavourites = () => {
     if (!currentUser) return;
-    const updatedFavourites = removeItemFromFavourites(currentUser, item.id);
+    const updatedFavourites = removeItemFromFavourites(currentUser, itemId);
     updateUser({ ...currentUser, favourites: updatedFavourites });
   };
 
   return (
     <>
-      {currentUser && userFavourites && userFavourites.includes(item.id) ? (
+      {currentUser && userFavourites && userFavourites.includes(itemId) ? (
         <Tooltip title='Remove from favourites' placement='top'>
           <HeartFilled
             className='heart-filled'
@@ -72,13 +81,18 @@ const LikeButton = ({ item, updateUser, userFavourites, currentUser }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
+interface Selection {
+  currentUser: User | null;
+  userFavourites: number[] | null | undefined;
+}
+
+const mapStateToProps = createStructuredSelector<ApplicationState, Selection>({
   currentUser: selectCurrentUser,
   userFavourites: selectUserFavourites,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  updateUser: (updatedUser) => dispatch(updateUser(updatedUser)),
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  updateUser: (updatedUser: User) => dispatch(updateUser(updatedUser)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LikeButton);

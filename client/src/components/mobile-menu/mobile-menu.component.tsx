@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import { signOutStart } from '../../redux/user/user.actions';
+import { ApplicationState } from '../../redux/store';
+import { User } from '../../redux/user/user.types';
+import { signOutStart, Dispatch } from '../../redux/user/user.actions';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { ReactComponent as ArrowRight } from '../../assets/arrow-right.svg';
 
 import './mobile-menu.styles.scss';
 
-const MobileMenu = ({ anchorEl, onClose, currentUser, signOutStart }) => {
+type MobileMenuProps = {
+  anchorEl: Element | null;
+  onClose: () => void;
+  currentUser: User | null;
+  signOutStart: () => void;
+}
+
+const MobileMenu: FC<MobileMenuProps> = ({ anchorEl, onClose, currentUser, signOutStart }) => {
   return (
     <Menu
       className='mobile-menu'
@@ -103,11 +112,15 @@ const MobileMenu = ({ anchorEl, onClose, currentUser, signOutStart }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
+interface Selection {
+  currentUser: User | null;
+}
+
+const mapStateToProps = createStructuredSelector<ApplicationState, Selection>({
   currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
 });
 

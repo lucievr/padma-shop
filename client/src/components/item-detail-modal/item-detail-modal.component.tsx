@@ -38,7 +38,7 @@ const ItemDetailModal: FC<ModalProps> = ({
 }) => {
   if (!modalItem) return null;
 
-  const { name, price, imageUrl, quantity, description } = modalItem;
+  const { id, name, price, imageUrl, quantity, description } = modalItem;
 
   return (
     <Dialog
@@ -48,7 +48,7 @@ const ItemDetailModal: FC<ModalProps> = ({
     >
       <Card className='item-card'>
         <CardHeader
-          avatar={<LikeButton item={modalItem} />}
+          avatar={<LikeButton itemId={id} />}
           action={<Close className='close' onClick={closeItemModal} />}
           title={`${name} (${quantity})`}
           subheader={<span>€ {price.toFixed(2)}</span>}

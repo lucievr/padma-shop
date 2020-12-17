@@ -12,7 +12,7 @@ import CartItem from '../cart-item/cart-item.component';
 
 import './cart-dropdown.styles.scss';
 
-interface CartDropdownProps extends RouteComponentProps<any> {
+interface CartDropdownProps extends RouteComponentProps {
   cartItems: CartItemType[];
   anchorEl: Element | null;
   onClose: () => void;

@@ -8,7 +8,7 @@ import CustomButton from '../custom-button/custom-button.component';
 
 import './collection-preview.styles.scss';
 
-interface CollectionPreviewProps extends RouteComponentProps<any> {
+interface CollectionPreviewProps extends RouteComponentProps {
   title: string;
   items: ShopItem[];
 }

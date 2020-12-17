@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './custom-button.styles.scss';
 
 type CustomButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   isGoogleSignIn?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
 }

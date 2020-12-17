@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, FC, FormEvent, SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
 
 import {
   googleSignInStart,
   emailSignInStart,
+  Dispatch,
+  UserCredentials,
 } from '../../redux/user/user.actions';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
@@ -11,7 +13,12 @@ import { ReactComponent as GoogleIcon } from '../../assets/google.svg';
 
 import './sign-in.styles.scss';
 
-const SignIn = ({ googleSignInStart, emailSignInStart }) => {
+type SignInProps = {
+  googleSignInStart: () => void;
+  emailSignInStart: (userCredentials: UserCredentials) => void;
+}
+
+const SignIn: FC<SignInProps> = ({ googleSignInStart, emailSignInStart }) => {
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
@@ -19,12 +26,14 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
 
   const { email, password } = userCredentials;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    emailSignInStart(email, password);
+    emailSignInStart({ email, password });
   };
 
-  const handleChange = ({ target: { value, name } }) => {
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value } = target;
     setUserCredentials({ ...userCredentials, [name]: value });
   };
 
@@ -37,7 +46,7 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
           name='email'
           type='email'
           value={email}
-          handleChange={handleChange}
+          onChange={handleChange}
           label='Email'
           required
         />
@@ -45,7 +54,7 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
           name='password'
           type='password'
           value={password}
-          handleChange={handleChange}
+          onChange={handleChange}
           label='Password'
           required
         />
@@ -67,10 +76,10 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   googleSignInStart: () => dispatch(googleSignInStart()),
-  emailSignInStart: (email, password) =>
-    dispatch(emailSignInStart({ email, password })),
+  emailSignInStart: (userCredentials: UserCredentials) =>
+    dispatch(emailSignInStart(userCredentials)),
 });
 
 export default connect(null, mapDispatchToProps)(SignIn);

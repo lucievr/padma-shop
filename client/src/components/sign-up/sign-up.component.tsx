@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, FC, FormEvent, SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
 
-import { signUpStart } from '../../redux/user/user.actions';
+import { signUpStart, Dispatch, UserCredentials } from '../../redux/user/user.actions';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
 import './sign-up.styles.scss';
 
-const SignUp = ({ signUpStart }) => {
+type SignUpProps = {
+  signUpStart: (userCredentials: UserCredentials) => void;
+}
+
+const SignUp: FC<SignUpProps> = ({ signUpStart }) => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: '',
     email: '',
@@ -17,7 +21,7 @@ const SignUp = ({ signUpStart }) => {
 
   const { displayName, email, password, confirmPassword } = userCredentials;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -25,10 +29,12 @@ const SignUp = ({ signUpStart }) => {
       return;
     }
 
-    signUpStart({ displayName, email, password });
+    signUpStart({ email, password, displayName });
   };
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value } = target;
     setUserCredentials({ ...userCredentials, [name]: value });
   };
 
@@ -79,8 +85,8 @@ const SignUp = ({ signUpStart }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  signUpStart: (userCredentials: UserCredentials) => dispatch(signUpStart(userCredentials)),
 });
 
 export default connect(null, mapDispatchToProps)(SignUp);
