@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, MouseEvent } from 'react';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
@@ -6,11 +6,13 @@ import Zoom from '@material-ui/core/Zoom';
 import { ReactComponent as ArrowUp } from '../../assets/arrow-up.svg';
 import './back-to-top-button.styles.scss';
 
-const BackToTopButton = () => {
+
+const BackToTopButton: FC<{}> = () => {
   const trigger = useScrollTrigger();
 
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLDivElement;
+    const anchor = (target.ownerDocument || document).querySelector(
       '#back-to-top-anchor'
     );
 

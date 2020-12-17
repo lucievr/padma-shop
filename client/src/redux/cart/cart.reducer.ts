@@ -1,11 +1,12 @@
-import CartActionTypes from './cart.types';
+import { Reducer } from 'redux';
+import { CartActionTypes, cartState } from './cart.types';
 import { addItemToCart, removeItemFromCart } from './cart.utils';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: cartState = {
   cartItems: [],
 };
 
-const cartReducer = (state = INITIAL_STATE, action) => {
+const cartReducer: Reducer<cartState> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CartActionTypes.ADD_ITEM:
       return {
