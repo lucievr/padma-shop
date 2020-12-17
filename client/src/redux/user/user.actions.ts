@@ -1,4 +1,4 @@
-import { action } from 'typesafe-actions';
+import { action, Action } from 'typesafe-actions';
 import { UserActionTypes, User } from './user.types';
 
 export interface UserCredentials {
@@ -47,3 +47,5 @@ export const signUpFailure = (error: string) =>
 
 export const updateUser = (updatedUser: User) =>
   action(UserActionTypes.UPDATE_USER, updatedUser);
+
+export type Dispatch = (action: Action) => void;

@@ -7,7 +7,7 @@ import ItemDetailModal from '../../components/item-detail-modal/item-detail-moda
 
 import './collection.styles.scss';
 
-const CollectionPage = ({ collection, modalItem }) => {
+const CollectionPage = ({ collection }) => {
   const { title, items } = collection;
 
   return (
@@ -18,13 +18,12 @@ const CollectionPage = ({ collection, modalItem }) => {
           <CollectionItem key={item.id} item={item} />
         ))}
       </div>
-      {modalItem ? <ItemDetailModal /> : null}
+      <ItemDetailModal />
     </div>
   );
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  modalItem: state.shop.modalItem,
   collection: selectCollection(ownProps.match.params.collectionId)(state),
   // CollectionPage nested within <Route /> so has access to match prop
 });

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, FC, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
+import { ApplicationState } from '../../redux/store';
+import { User } from '../../redux/user/user.types';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectWindowWidth } from '../../redux/app/app.selectors';
-import { signOutStart } from '../../redux/user/user.actions';
+import { signOutStart, Dispatch } from '../../redux/user/user.actions';
 import CartIcon from '../cart-icon/cart-icon.component';
 import MobileMenu from '../mobile-menu/mobile-menu.component';
 import { ReactComponent as Logo } from '../../assets/lotus.svg';
@@ -15,10 +17,16 @@ import { ReactComponent as MenuIcon } from '../../assets/menu.svg';
 
 import './header.styles.scss';
 
-const Header = ({ currentUser, signOutStart, windowWidth }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
+type HeaderProps = {
+  currentUser: User | null;
+  signOutStart: () => void;
+  windowWidth: number | null;
+}
 
-  const handleClick = (event) => {
+const Header: FC<HeaderProps> = ({ currentUser, signOutStart, windowWidth }) => {
+  const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+
+  const handleClick = (event: MouseEvent<Element>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -30,7 +38,7 @@ const Header = ({ currentUser, signOutStart, windowWidth }) => {
     <>
       <AppBar position='fixed' className='app-bar'>
         <Toolbar className='toolbar'>
-          {windowWidth > 500 ? (
+          {windowWidth && windowWidth > 500 ? (
             <>
               <Link className='logo-container' to='/'>
                 <Logo className='logo' />
@@ -77,12 +85,17 @@ const Header = ({ currentUser, signOutStart, windowWidth }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
+interface Selection {
+  currentUser: User | null;
+  windowWidth: number | null;
+}
+
+const mapStateToProps = createStructuredSelector<ApplicationState, Selection>({
   currentUser: selectCurrentUser,
   windowWidth: selectWindowWidth,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
 });
 
