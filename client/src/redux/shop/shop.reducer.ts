@@ -1,6 +1,7 @@
-import ShopActionTypes from './shop.types';
+import { Reducer } from 'redux';
+import { shopState, ShopActionTypes} from './shop.types';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: shopState = {
   collections: null,
   isFetching: false,
   errorMessage: undefined,
@@ -8,7 +9,7 @@ const INITIAL_STATE = {
   modalItem: null,
 };
 
-const shopReducer = (state = INITIAL_STATE, action) => {
+const shopReducer: Reducer<shopState> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ShopActionTypes.FETCH_COLLECTIONS_START:
       return {

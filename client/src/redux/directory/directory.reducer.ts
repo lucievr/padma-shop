@@ -1,4 +1,7 @@
-const INITIAL_STATE = {
+import { Reducer } from 'redux';
+import { directoryState } from './directory.types';
+
+const INITIAL_STATE: directoryState = {
   sections: [
     {
       title: 'Soaps',
@@ -40,7 +43,7 @@ const INITIAL_STATE = {
   ],
 };
 
-const directoryReducer = (state = INITIAL_STATE, action) => {
+const directoryReducer: Reducer<directoryState> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     default:
       return state;

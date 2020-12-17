@@ -10,7 +10,7 @@ import {
   fetchCollectionsFailure,
 } from './shop.actions';
 
-import ShopActionTypes from './shop.types';
+import { ShopActionTypes } from './shop.types';
 
 export function* fetchCollectionsAsync() {
   try {

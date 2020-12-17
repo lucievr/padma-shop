@@ -2,6 +2,8 @@ import { combineReducers } from "redux";
 import { all, call } from 'redux-saga/effects';
 
 import { cartState } from './cart/cart.types';
+import { directoryState } from './directory/directory.types';
+import { shopState } from './shop/shop.types';
 import { shopSagas } from './shop/shop.sagas';
 import { userSagas } from './user/user.sagas';
 import { cartSagas } from './cart/cart.sagas';
@@ -13,7 +15,8 @@ import shopReducer from './shop/shop.reducer';
 
 export interface ApplicationState { // TODO
   cart: cartState;
-  // inventory: InventoryState;
+  directory: directoryState;
+  shop: shopState;
 }
 
 export const rootReducer = combineReducers({
