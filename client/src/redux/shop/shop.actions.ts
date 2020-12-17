@@ -1,4 +1,4 @@
-import { action } from 'typesafe-actions';
+import { action, Action } from 'typesafe-actions';
 import { ShopActionTypes, ShopItem, CollectionItem } from './shop.types';
 
 export const fetchCollectionsStart = () => action(ShopActionTypes.FETCH_COLLECTIONS_START);
@@ -10,3 +10,5 @@ export const fetchCollectionsFailure = (errorMessage: string) => action(ShopActi
 export const openItemModal = (item: ShopItem) => action(ShopActionTypes.OPEN_ITEM_MODAL, item);
 
 export const closeItemModal = () => action(ShopActionTypes.CLOSE_ITEM_MODAL);
+
+export type Dispatch = (action: Action) => void;

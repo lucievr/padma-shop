@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 
 import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { CartItem as CartItemType } from '../../redux/cart/cart.types';
+import { ApplicationState } from '../../redux/store';
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
 
 import './cart-dropdown.styles.scss';
 
-const CartDropdown = ({ cartItems, history, anchorEl, onClose }) => (
+interface CartDropdownProps extends RouteComponentProps<any> {
+  cartItems: CartItemType[];
+  anchorEl: Element | null;
+  onClose: () => void;
+}
+
+const CartDropdown: FC<CartDropdownProps> = ({ cartItems, history, anchorEl, onClose }) => (
   <Menu
     className='cart-dropdown'
     elevation={0}
@@ -49,7 +57,11 @@ const CartDropdown = ({ cartItems, history, anchorEl, onClose }) => (
   </Menu>
 );
 
-const mapStateToProps = createStructuredSelector({
+interface Selection {
+  cartItems: CartItemType[]; 
+}
+
+const mapStateToProps = createStructuredSelector<ApplicationState, Selection>({
   cartItems: selectCartItems,
 });
 

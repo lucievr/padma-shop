@@ -1,4 +1,4 @@
-import { action } from 'typesafe-actions';
+import { action, Action } from 'typesafe-actions';
 import { CartActionTypes, CartItem } from './cart.types';
 
 export const addItem = (item: CartItem) =>
@@ -11,3 +11,5 @@ export const clearItemFromCart = (item: CartItem) =>
   action(CartActionTypes.CLEAR_ITEM_FROM_CART, item);
 
 export const clearCart = () => action(CartActionTypes.CLEAR_CART);
+
+export type Dispatch = (action: Action) => void;

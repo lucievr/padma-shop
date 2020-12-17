@@ -1,10 +1,7 @@
-export interface CartItem {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-  quantity: number;
-  description: string;
+import { ShopItem } from '../shop/shop.types';
+
+export interface CartItem extends ShopItem {
+  cartQty?: number | 1;
 }
 export interface cartState {
   readonly cartItems: CartItem[];

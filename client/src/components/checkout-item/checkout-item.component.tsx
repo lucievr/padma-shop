@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import { CartItem } from '../../redux/cart/cart.types';
 import {
   clearItemFromCart,
   addItem,
   removeItem,
+  Dispatch
 } from '../../redux/cart/cart.actions';
 
 import { ReactComponent as ArrowRight } from '../../assets/arrow-right.svg';
 import { ReactComponent as ArrowLeft } from '../../assets/arrow-left.svg';
 import './checkout-item.styles.scss';
 
-const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+type CheckoutItemProps = {
+  cartItem: CartItem;
+  clearItem: (cartItem: CartItem) => void;
+  addItem: (cartItem: CartItem) => void;
+  removeItem: (cartItem: CartItem) => void;
+}
+
+const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem, clearItem, addItem, removeItem }) => {
+  const { name, imageUrl, price, cartQty } = cartItem;
 
   return (
     <div className='checkout-item'>
@@ -25,7 +34,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
         <div className='arrow' onClick={() => removeItem(cartItem)}>
           <ArrowLeft className='arrow-left' />
         </div>
-        <span className='value'>{quantity}</span>
+        <span className='value'>{cartQty}</span>
         <div className='arrow' onClick={() => addItem(cartItem)}>
           <ArrowRight className='arrow-right' />
         </div>
@@ -40,10 +49,10 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  clearItem: (item) => dispatch(clearItemFromCart(item)),
-  addItem: (item) => dispatch(addItem(item)),
-  removeItem: (item) => dispatch(removeItem(item)),
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  clearItem: (item: CartItem) => dispatch(clearItemFromCart(item)),
+  addItem: (item: CartItem) => dispatch(addItem(item)),
+  removeItem: (item: CartItem) => dispatch(removeItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(CheckoutItem);
